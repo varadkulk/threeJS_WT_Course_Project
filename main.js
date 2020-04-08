@@ -2,7 +2,7 @@ var renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 scene = new THREE.Scene();
-scene.background = new THREE.Color(0x000000);
+scene.background = new THREE.Color(0xdddddd);
 camera = new THREE.PerspectiveCamera(
 	40,
 	window.innerWidth / window.innerHeight,
@@ -24,27 +24,10 @@ loader.load("Mclaren/scene.gltf", function (gltf) {
 var side = 200;
 var intensity = 100;
 var constant = 3.5;
-var rectLight = new THREE.RectAreaLight(0xffffff, intensity, side, side);
-rectLight.position.set(side * constant, 0, 0);
-rectLight.lookAt(0, 0, 0);
-scene.add(rectLight);
-var rectLight2 = new THREE.RectAreaLight(0xffffff, intensity, side, side);
-rectLight2.position.set(0, side * constant, 0);
-rectLight2.lookAt(0, 0, 0);
-scene.add(rectLight2);
-var rectLight3 = new THREE.RectAreaLight(0xffffff, intensity, side, side);
-rectLight3.position.set(-side * constant, 0, 0);
-rectLight3.lookAt(0, 0, 0);
-scene.add(rectLight3);
-var rectLight4 = new THREE.RectAreaLight(0xffffff, intensity, side, side);
-rectLight4.position.set(0, 0, side * 1.5 * constant);
-rectLight4.lookAt(0, 0, 0);
-scene.add(rectLight4);
-var rectLight5 = new THREE.RectAreaLight(0xffffff, intensity, side, side);
-rectLight5.position.set(0, 0, -side * 1.5 * constant);
-rectLight5.lookAt(0, 0, 0);
-scene.add(rectLight5);
-rectLight.add(rectLightHelper);
+var ambientLight = new THREE.AmbientLight(0xffffff,10); // soft white light
+scene.add(ambientLight);
+var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
+scene.add( directionalLight );
 function animate() {
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
