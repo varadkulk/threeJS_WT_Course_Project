@@ -17,17 +17,17 @@ controls = new THREE.OrbitControls(camera, renderer.domElement);
 let loader = new THREE.GLTFLoader();
 loader.load("Mclaren/scene.gltf", function (gltf) {
 	car = gltf.scene.children[0];
-	car.scale.set(1, 1, 1);
+	car.scale.set(0.75,0.75,0.75);
 	scene.add(gltf.scene);
 	animate();
 });
 var side = 200;
 var intensity = 100;
 var constant = 3.5;
-var ambientLight = new THREE.AmbientLight(0xffffff,10); // soft white light
+var ambientLight = new THREE.AmbientLight(0xffffff, 10); // soft white light
 scene.add(ambientLight);
-var directionalLight = new THREE.DirectionalLight( 0xffffff, 1 );
-scene.add( directionalLight );
+var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+scene.add(directionalLight);
 function animate() {
 	renderer.render(scene, camera);
 	requestAnimationFrame(animate);
